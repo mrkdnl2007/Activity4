@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNHS - Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            color: black;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: black;
+            padding: 15px 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        /* Menu */
+        .menu-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .menu-button {
+            background-color: #FFD700;
+            color: black;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-links {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 200px;
+            top: 40px;
+            left: 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-links a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .menu-links a:hover {
+            background-color: #FFD700;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            overflow: hidden;
+        }
+
+        .video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+        }
+
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 10;
+            padding: 50px;
+            overflow: auto;
+        }
+
+        /* Rooms */
+        .room {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .room img {
+            width: 200px;
+            height: 150px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        /* Enrollment Form */
+        #enrollment form {
+            max-width: 700px;
+            width: 90%;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #enrollment input, 
+        #enrollment button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #enrollment button {
+            background: #FFD700;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #enrollment button:hover {
+            background: #FFC107;
+        }
+
+        /* Footer */
+        .footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu-links");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("menu-links");
+            var button = document.querySelector(".menu-button");
+            if (!menu.contains(event.target) && !button.contains(event.target)) {
+                menu.style.display = "none";
+            }
+        });
+
+        function expandSection(section) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('fullscreen'));
+            section.classList.add('fullscreen');
+        }
+
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("fullscreen")) {
+                event.target.classList.remove("fullscreen");
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <img src="logo.jpg" alt="Logo">
+        DELA PAZ NATIONAL HIGH SCHOOL
+    </div>
+
+    <div class="menu-container">
+        <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+        <div class="menu-links" id="menu-links">
+            <a href="#mission">Mission & Vision</a>
+            <a href="#background">School Background</a>
+            <a href="#rooms">Facilities</a>
+            <a href="#enrollment">Enrollment Form</a>
+        </div>
+    </div>
+
+    <div class="video-section">
+        <video autoplay muted loop>
+            <source src="https://www.facebook.com/share/v/1B31M8esMV/" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="mission" class="section" onclick="expandSection(this)">
+        <h2>DepEd Mission & Vision</h2>
+        <p>We dream of Filipinos who passionately love their country...</p>
+    </div>
+
+    <div id="background" class="section" onclick="expandSection(this)">
+        <h2>School Background</h2>
+        <p>Dela Paz National High School is located in Biñan City...</p>
+    </div>
+
+    <div id="rooms" class="section" onclick="expandSection(this)">
+        <h2>Facilities</h2>
+        <div class="room">
+            <img src="office.jpg" alt="Principal's Office">
+            <p>The Principal's Office is where school administration work takes place.</p>
+        </div>
+        <div class="room">
+            <img src="canteen.jpg" alt="Canteen">
+            <p>The canteen provides nutritious meals for students and staff.</p>
+        </div>
+    </div>
+
+    <div id="enrollment" class="section" onclick="expandSection(this)">
+        <h2>BE ONE OF THE ANNEXIANS!</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Grade Level">
+            <input type="email" placeholder="Email Address">
+            <input type="text" placeholder="Mother's Name">
+            <input type="text" placeholder="Father's Name">
+            <input type="text" placeholder="Address">
+            <input type="date" placeholder="Birthday">
+            <input type="number" placeholder="Age">
+            <input type="text" placeholder="Sex">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        DELA PAZ NATIONAL HIGH SCHOOL
+    </div>
+
+</body>
+</html>
